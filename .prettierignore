@@ -1,0 +1,137 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+dist/
+build/
+out/
+.out/
+.out-tsc/
+
+# Minified files
+*.min.js
+*.min.css
+
+# Generated files
+dist/
+build/
+out/
+
+# IDE
+.idea/
+.vscode/
+
+# Git
+.git/
+.gitignore
+
+# Assets
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+favicon.ico
+
+# Logs
+*.log
+logs/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Docker
+Dockerfile
+.docker/
+
+# Docker Compose
+docker-compose.yml
+
+# Kubernetes
+.k8s/
+
+# Terraform
+.terraform/
+*.tfstate
+
+# AWS
+.aws/
+
+# Azure
+.azure/
+
+# Google Cloud
+.gcloud/
+
+# Firebase
+.firebase/
+firebase-debug.log
+
+# AWS Amplify
+.amplify/
+
+# Netlify
+.netlify/
+
+# Vercel
+.vercel/
+
+# GitHub
+.github/
+
+# GitLab
+.gitlab-ci.yml
+
+# Travis CI
+.travis.yml
+
+# CircleCI
+.circleci/
+
+# Codeship
+.codeship/
+
+# Semaphore
+.semaphore/
+.shippable/
+
+# Documentation
+docs/
+site/
+gh-pages/
+
+# Translation
+locale/
+lang/
+
+# Tests
+test/
+tests/
+__tests__/
+
+# Mocks
+__mocks__/
+mocks/
+
+# Snapshots
+.snapshots/
+
+# Report
+reports/
+
+# Artifacts
+artifacts/
+
+# Coverage
+.nyc_output/
+
+# Build output
+.out/
+.out-tsc/

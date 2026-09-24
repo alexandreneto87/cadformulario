@@ -1,0 +1,44 @@
+{
+  "name": "sistema-inscricao-artistas-supabase",
+  "version": "1.0.0",
+  "description": "Sistema de inscrição de artistas com Backend Serverless using Supabase",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "test": "echo \"No test specified\" && exit 0",
+    "deploy": "npm run build && echo 'Deploy to hosting platform'"
+  },
+  "keywords": [
+    "supabase",
+    "serverless",
+    "backend",
+    "artista",
+    "prefeitura",
+    "formulário"
+  ],
+  "author": "DTi - Prefeitura de Fazenda Rio Grande",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seu-usuario/sistema-inscricao-artistas-supabase.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seu-usuario/sistema-inscricao-artistas-supabase/issues"
+  },
+  "homepage": "https://github.com/seu-usuario/sistema-inscricao-artistas-supabase#readme"
+}

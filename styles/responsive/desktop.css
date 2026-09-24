@@ -1,0 +1,14 @@
+/* 
+ * Desktop Styles
+ * Media queries para desktops
+ */
+
+@media (min-width: 993px) {
+    .form-container {
+        max-width: 1200px;
+    }
+    
+    .form-section {
+        padding: 25px;
+    }
+}

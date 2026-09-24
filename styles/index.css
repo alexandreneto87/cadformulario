@@ -1,0 +1,41 @@
+/*
+ * Styles Directory Index
+ * Este diretório contém todos os arquivos de estilização do projeto
+ */
+
+/* 
+ * Variáveis Globais
+ * Define cores, tipografia, espaçamentos e configurações globais
+ */
+@import 'variables.css';
+
+/* 
+ * Estilos Principais
+ * Classes utilitárias e reset global
+ */
+@import 'reset.css';
+
+/* 
+ * Componentes Específicos
+ * Estilos para componentes do formulário
+ */
+@import 'components/form.css';
+@import 'components/buttons.css';
+@import 'components/cards.css';
+@import 'components/modals.css';
+@import 'components/select2.css';
+
+/* 
+ * Responsividade
+ * Media queries para diferentes tamanhos de tela
+ */
+@import 'responsive/desktop.css';
+@import 'responsive/tablet.css';
+@import 'responsive/mobile.css';
+
+/* 
+ * Temas (opcional)
+ * Para implementação de temas escuros/claros
+ */
+@import 'themes/light.css';
+@import 'themes/dark.css';

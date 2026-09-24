@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+dist/
+build/
+out/
+.out/
+.out-tsc/
+
+# Minified files
+*.min.css
+*.min.js
+
+# Generated files
+dist/
+build/
+out/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+
+# Assets (geralmente não precisam de lint)
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Docker
+Dockerfile
+.docker/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/

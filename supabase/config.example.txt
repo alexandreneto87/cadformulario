@@ -1,0 +1,45 @@
+# ============================================
+# SUPABASE CONFIGURATION
+# Arquivo de Configuração (NÃO COMMITAR COM CREDENCIAIS REAIS)
+# ============================================
+
+# URLs e Chaves (usar variáveis de ambiente ou .env.local)
+SUPABASE_URL=your-supabase-project-url-here
+SUPABASE_ANON_KEY=your-supabase-anon-key-here
+
+# Variáveis de Ambiente (para produção)
+# .env.local ou variáveis do servidor
+
+# ============================================
+# COMO OBTER AS CREDENCIAIS:
+# 1. Acesse https://supabase.com
+# 2. Crie um projeto ou use um existente
+# 3. Vá em Settings > API
+# 4. Copie o "Project URL" e "anon/public key"
+# 5. Para chaves de admin, use as Edge Functions (nunca expor no frontend)
+# ============================================
+
+# ============================================
+# SUPABASE PROJECT SETUP STEPS:
+# 1. Crie uma conta em https://supabase.com
+# 2. Crie um novo projeto (free tier suficiente)
+# 3. Espere o projeto ser provisionado (~3-5 minutos)
+# 4. Vá em SQL Editor e execute o arquivo database.sql
+# 5. Configure o Storage:
+#    - Vá em Storage > Create Bucket
+#    - Nome: artist-submissions
+#    - Public: NO (privado)
+#    - Rules: aplica as políticas do arquivo database.sql
+# 6. Configure as variáveis de ambiente no Dashboard:
+#    - Settings > Environment Variables
+# 7. Para EmailJS/Resend: crie uma conta e obtenha as API keys
+# ============================================
+
+# ============================================
+# SEGURANÇA CRÍTICA:
+# - NUNCA commitar arquivos com chaves reais
+# - Usar .env.local para desenvolvimento
+# - Edge Functions para operações admin (não expor chaves)
+# - RLS (Row Level Security) já configurado no SQL
+# - Storage privado para arquivos de usuários
+# ============================================

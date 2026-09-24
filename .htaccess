@@ -1,0 +1,59 @@
+# Habilitar reescrita de URL
+RewriteEngine On
+RewriteBase /
+
+# Forçar HTTPS (opcional, descomente em produção)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Redirecionar requisições para o índice
+DirectoryIndex index.html
+
+# Configurações de Cache
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType font/woff "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 month"
+</IfModule>
+
+# Compressão Gzip
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json
+</IfModule>
+
+# Proteção de arquivos sensíveis
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<Files ~ "\.(sql|md)$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevenir inclusão direta de arquivos PHP (se houver)
+<IfModule mod_php.c>
+    php_flag display_errors Off
+</IfModule>
+
+# Configurações de Segurança
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+
+# Configuração de Erros
+ErrorDocument 404 /index.html
+ErrorDocument 403 /index.html
+
+# Tipos de Arquivos
+AddType application/javascript js
+AddType text/css css
+AddType image/svg+xml svg svgz

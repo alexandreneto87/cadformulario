@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição de Artista - Prefeitura de Fazenda Rio Grande</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5><span class="text-red">*</span> Dados Obrigatórios</h5>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-horizontal" id="form-inscricao" method="post">
+                                <input type="hidden" name="_method" value="POST">
+                                <input type="hidden" name="_token" value="EgPvvRojgDNuHeI6V7EZvkgUUtiQybw1Ar9Luh6u">
+                                
+                                <!-- Seção 1: Dados Pessoais -->
+                                <section class="form-section" aria-labelledby="section-pessoal">
+                                    <h6 id="section-pessoal" class="section-title">Dados Pessoais</h6>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label" for="tipo_cadastro">Tipo de Cadastro <span class="text-red">*</span></label>
+                                                <select class="form-control custom-select select2" id="tipo_cadastro" name="tipo_cadastro" required>
+                                                    <option value="">Escolher</option>
+                                                    <option value="1">Individual</option>
+                                                    <option value="2">Grupo (sem CNPJ)</option>
+                                                    <option value="3">Entidade, organização ou espaços Culturais. (com CNPJ)</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="nome_pessoa">Nome Completo do artista/grupo <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="nome_pessoa" name="nome_pessoa" required placeholder="Sua resposta">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="nome_artista">Nome artístico <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="nome_artista" name="nome_artista" required placeholder="Sua resposta">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="email_insc">E-mail <span class="text-red">* Caso não receba o email, verifique sua caixa de Spam.</span></label>
+                                                <input type="email" class="form-control" id="email_insc" name="email_insc" required placeholder="seu@email.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                
+                                <!-- Seção 2: Informações de Contato -->
+                                <section class="form-section" aria-labelledby="section-contato">
+                                    <h6 id="section-contato" class="section-title">Informações de Contato</h6>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="descricao">Descrição Geral do artista/grupo <span class="text-red">*</span></label>
+                                                <textarea class="form-control" id="descricao" name="descricao" rows="4" required placeholder="Sua resposta"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="cpf_insc">CPF do artista/responsável pelo grupo <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="cpf_insc" name="cpf_insc" required placeholder="000.000.000-00">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="reg_nasc">(R.G.) do artista/responsável pelo grupo</label>
+                                                <input type="text" class="form-control" id="reg_nasc" name="reg_nasc" placeholder="0000000">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label" for="data_nasc">Data de Nascimento ou criação <span class="text-red">*</span></label>
+                                                <input class="form-control fc-datepicker" id="data_nasc" name="data_nasc" required placeholder="dd/mm/aaaa" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label" for="data_inicio">Data de início da atividade artística <span class="text-red">*</span></label>
+                                                <input class="form-control fc-datepicker" id="data_inicio" name="data_inicio" required placeholder="dd/mm/aaaa" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="id_bairros">Bairro <span class="text-red">*</span></label>
+                                                <select class="select2" name="id_bairros" id="id_bairros" required>
+                                                    <option value="">Escolher</option>
+                                                    <option value="1">Estados I</option>
+                                                    <option value="2">Estados II</option>
+                                                    <option value="3">Eucaliptos I</option>
+                                                    <option value="4">Eucaliptos II</option>
+                                                    <option value="5">Gralha Azul I</option>
+                                                    <option value="6">Gralha Azul II</option>
+                                                    <option value="7">Iguaçu I</option>
+                                                    <option value="8">Iguaçu II</option>
+                                                    <option value="9">Nações I</option>
+                                                    <option value="10">Nações II</option>
+                                                    <option value="11">Pioneiros</option>
+                                                    <option value="12">Santa Terezinha</option>
+                                                    <option value="13">Parque Industrial</option>
+                                                    <option value="14">Santa Maria</option>
+                                                    <option value="15">Jardim Veneza</option>
+                                                    <option value="16">Campo da Cruz</option>
+                                                    <option value="17">Campo do Rio</option>
+                                                    <option value="18">Fazenda Iguaçu (Capocu)</option>
+                                                    <option value="19">Passo Amarelo</option>
+                                                    <option value="20">São Sebastião</option>
+                                                    <option value="21">Samambaia</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="cep">CEP <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="cep" name="cep" required placeholder="00000-000">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="endereco">Endereço (rua, número) <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="endereco" name="endereco" required placeholder="Sua resposta">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label" for="id_cidades">Cidade <span class="text-red">*</span></label>
+                                                <select class="form-control custom-select select2" id="id_cidades" name="id_cidades" required>
+                                                    <option value="">Escolher</option>
+                                                    <option value="1">Fazenda Rio Grande - PR</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="celular">Telefone/Whatsapp para contato <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="celular" name="celular" required placeholder="(00) 00000-0000">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="site_blog">Site/Blog/Canal <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="site_blog" name="site_blog" required placeholder="https://">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                
+                                <!-- Seção 3: Segmentos Artísticos -->
+                                <section class="form-section" aria-labelledby="section-segmentos">
+                                    <h6 id="section-segmentos" class="section-title">Segmentos Artísticos</h6>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="segmentoT">Segmentos artísticos <span class="text-red">*</span></label>
+                                                <div class="segmentos-container">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-1" name="segmentoT[]" value="1">
+                                                        <label class="form-check-label" for="segmentoT-1">Artes circenses</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-2" name="segmentoT[]" value="2">
+                                                        <label class="form-check-label" for="segmentoT-2">Artes visuais</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-3" name="segmentoT[]" value="3">
+                                                        <label class="form-check-label" for="segmentoT-3">Artesanato</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-4" name="segmentoT[]" value="4">
+                                                        <label class="form-check-label" for="segmentoT-4">Cinema</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-5" name="segmentoT[]" value="5">
+                                                        <label class="form-check-label" for="segmentoT-5">Cultura popular</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-6" name="segmentoT[]" value="6">
+                                                        <label class="form-check-label" for="segmentoT-6">Dança</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-7" name="segmentoT[]" value="7">
+                                                        <label class="form-check-label" for="segmentoT-7">Design e serviços criativos</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-8" name="segmentoT[]" value="8">
+                                                        <label class="form-check-label" for="segmentoT-8">Literatura/poesia</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-9" name="segmentoT[]" value="9">
+                                                        <label class="form-check-label" for="segmentoT-9">Música</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-10" name="segmentoT[]" value="10">
+                                                        <label class="form-check-label" for="segmentoT-10">Produção/gestão cultural</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-11" name="segmentoT[]" value="11">
+                                                        <label class="form-check-label" for="segmentoT-11">Professor/Educador/Pesquisador</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-12" name="segmentoT[]" value="12">
+                                                        <label class="form-check-label" for="segmentoT-12">Teatro</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-13" name="segmentoT[]" value="13">
+                                                        <label class="form-check-label" for="segmentoT-13">Gastronomia Criativa</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="segmentoT-14" name="segmentoT[]" value="14">
+                                                        <label class="form-check-label" for="segmentoT-14">Outro:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mt-2" id="outroSegmentoGroup" style="display: none;">
+                                                    <input type="text" class="form-control" id="outro_segmento" name="outro_segmento" placeholder="Digite o segmento">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="atividades">Atividade principal (bateria, poeta, malabarista) <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="atividades" name="atividades" required placeholder="Sua resposta">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                
+                                <!-- Seção 4: Dados da Empresa (se aplicável) -->
+                                <section class="form-section" aria-labelledby="section-empresa">
+                                    <h6 id="section-empresa" class="section-title">Dados da Empresa (se aplicável)</h6>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label" for="possui_cnpj">Possui CNPJ na área cultura? <span class="text-red">*</span></label>
+                                                <select class="form-control custom-select select2" id="possui_cnpj" name="possui_cnpj" required>
+                                                    <option value="">Escolher</option>
+                                                    <option value="Sim">SIM</option>
+                                                    <option value="Não">NÃO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-12">
+                                            <div class="form-group" id="cnpjGroup" style="display: none;">
+                                                <label class="form-label" for="cnpj">CNPJ da empresa</label>
+                                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-12">
+                                            <div class="form-group" id="razaoSocialGroup" style="display: none;">
+                                                <label class="form-label" for="razao_social">Razão Social</label>
+                                                <input type="text" class="form-control" id="razao_social" name="razao_social" placeholder="Sua resposta">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                
+                                <!-- Seção 5: Anexos -->
+                                <section class="form-section" aria-labelledby="section-anexos">
+                                    <h6 id="section-anexos" class="section-title">Anexos</h6>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="form-label">Curriculum do artista/grupo (somente documentos em PDF) <span class="text-red">*</span></label>
+                                            <div class="mt-3">
+                                                <button type="button" class="btn btn-secondary" data-toggle="modal" id="btnAnexarArquivos">Anexar Arquivos...</button>
+                                                <b>&nbsp;&nbsp;<span class="text-red">* Atenção não esqueça de anexar o documento.</span></b>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label class="form-label" for="trab_prod">Principais trabalhos e produções artísticas</label>
+                                                <input type="text" class="form-control" id="trab_prod" name="trab_prod" placeholder="Sua resposta">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label" for="premios">Premiações em editais, concursos, festivais e outros <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="premios" name="premios" required placeholder="Sua resposta">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label" for="ultimo_trab">Últimos três trabalhos que participou <span class="text-red">*</span></label>
+                                                <input type="text" class="form-control" id="ultimo_trab" name="ultimo_trab" required placeholder="Sua resposta">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <label class="form-label">Arquivos, áudios e imagens</label>
+                                                    <br>
+                                                    <p class="text-muted">
+                                                        Envie para o e-mail <a href="mailto:culturafazenda@gmail.com">culturafazenda@gmail.com</a> com os seguintes itens opcionais (contendo o nome do artista ou grupo):
+                                                        <ul>
+                                                            <li>Foto para divulgação</li>
+                                                            <li>Marca do artista ou grupo</li>
+                                                            <li>Arquivos de áudio (.mp3)</li>
+                                                            <li>Fotos e imagens</li>
+                                                            <li>Vídeos (link youtube e outros)</li>
+                                                            <li>Outros arquivos</li>
+                                                        </ul>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                
+                                <!-- Seção 6: Termos e Condições -->
+                                <section class="form-section" aria-labelledby="section-termos">
+                                    <h6 id="section-termos" class="section-title">Termos e Condições</h6>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <label class="form-label">Condições:</label>
+                                                    <p class="text-muted">
+                                                        Privacidade e segurança são prioridades e nos comprometemos com a transparência do tratamento de dados pessoais dos nossos usuários/clientes. Por isso, esta presente Política de Privacidade estabelece como é feita a coleta, uso e transferência de informações de clientes ou outras pessoas que acessam ou usam nosso site.
+                                                        <br><br>
+                                                        Ao utilizar nossos serviços, você entende que coletaremos e usaremos suas informações pessoais nas formas descritas nesta Política, sob as normas de Proteção de Dados (LGPD, Lei Federal 13.709/2018), das disposições consumeristas da Lei Federal 8078/1990 e as demais normas do ordenamento jurídico brasileiro aplicáveis.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="custom-switch">
+                                                <input type="checkbox" id="aceito" name="aceito" class="custom-switch-input">
+                                                <span class="custom-switch-indicator"></span>
+                                                <span class="custom-switch-description">Concordo com as condições acima.</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="submit" id="btn-enviar" class="btn btn-primary mt-4 mb-0">Enviar</button>
+                                        </div>
+                                    </div>
+                                </section>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Anexar Arquivos -->
+        <div class="modal fade" id="modalAnexarArquivos" tabindex="-1" role="dialog" aria-labelledby="modalAnexarArquivosLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAnexarArquivosLabel">Anexar Arquivos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="ifrm" src="/tela_enviar/" title="Iframe de Anexar Arquivos" style="width: 100%; height: 450px; border: none;"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to top -->
+        <a href="#top" id="back-to-top" aria-label="Voltar ao topo"><i class="fe fe-arrow-up"></i></a>
+    </div>
+
+    <script src="js/app-config.js"></script>
+    <script src="js/form-validation.js"></script>
+    <script src="js/form-init.js"></script>
+</body>
+</html>
