@@ -37,7 +37,7 @@ const FormValidator = {
         aceito: null,
         btnAnexarArquivos: null,
         modalAnexarArquivos: null,
-        btnEnviar: null
+        btnEnviar: null,
     },
 
     /**
@@ -91,7 +91,7 @@ const FormValidator = {
      */
     bindEvents() {
         if (this.elements.form) {
-            this.elements.form.addEventListener('submit', (e) => this.validateForm(e));
+            this.elements.form.addEventListener('submit', e => this.validateForm(e));
         }
 
         if (this.elements.possuiCnpj) {
@@ -109,7 +109,9 @@ const FormValidator = {
 
         // Evento para campo de outro segmento
         if (this.elements.outroSegmento) {
-            this.elements.outroSegmento.addEventListener('input', () => this.validateOutroSegmento());
+            this.elements.outroSegmento.addEventListener('input', () =>
+                this.validateOutroSegmento()
+            );
         }
 
         // Evento para campo de email
@@ -165,7 +167,7 @@ const FormValidator = {
             jQuery('.fc-datepicker').datepicker({
                 format: 'dd/mm/yyyy',
                 language: 'pt-BR',
-                autoclose: true
+                autoclose: true,
             });
         }
     },
@@ -185,18 +187,21 @@ const FormValidator = {
      */
     toggleCNPJFields() {
         const possuiCnpj = this.elements.possuiCnpj?.value;
-        
+
         if (possuiCnpj === 'Sim') {
             if (this.elements.cnpjGroup) this.elements.cnpjGroup.style.display = 'block';
-            if (this.elements.razaoSocialGroup) this.elements.razaoSocialGroup.style.display = 'block';
-            
+            if (this.elements.razaoSocialGroup)
+                this.elements.razaoSocialGroup.style.display = 'block';
+
             // Torna obrigatório quando selecionado Sim
             if (this.elements.cnpj) this.elements.cnpj.setAttribute('required', 'required');
-            if (this.elements.razaoSocial) this.elements.razaoSocial.setAttribute('required', 'required');
+            if (this.elements.razaoSocial)
+                this.elements.razaoSocial.setAttribute('required', 'required');
         } else {
             if (this.elements.cnpjGroup) this.elements.cnpjGroup.style.display = 'none';
-            if (this.elements.razaoSocialGroup) this.elements.razaoSocialGroup.style.display = 'none';
-            
+            if (this.elements.razaoSocialGroup)
+                this.elements.razaoSocialGroup.style.display = 'none';
+
             // Remove o required quando não é necessário
             if (this.elements.cnpj) this.elements.cnpj.removeAttribute('required');
             if (this.elements.razaoSocial) this.elements.razaoSocial.removeAttribute('required');
@@ -210,7 +215,7 @@ const FormValidator = {
         const outrosSegmentos = Array.from(this.elements.segmentos)
             .filter(segmento => segmento.checked)
             .map(segmento => segmento.value);
-        
+
         // Se o segmento "Outro" (valor 14) estiver selecionado, mostra o campo
         if (outrosSegmentos.includes('14')) {
             if (this.elements.outroSegmentoGroup) {
@@ -232,13 +237,13 @@ const FormValidator = {
     validateEmail() {
         const email = this.elements.email?.value;
         if (!email) return true;
-        
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             this.showFieldError(this.elements.email, 'Por favor, informe um e-mail válido.');
             return false;
         }
-        
+
         this.clearFieldError(this.elements.email);
         return true;
     },
@@ -249,55 +254,57 @@ const FormValidator = {
     validateCPF() {
         const cpf = this.elements.cpf?.value;
         if (!cpf) return true;
-        
+
         // Remove máscara
         const cpfLimpo = cpf.replace(/[^\d]/g, '');
-        
+
         if (cpfLimpo.length !== 11) {
             this.showFieldError(this.elements.cpf, 'O CPF deve conter 11 dígitos.');
             return false;
         }
-        
+
         // Verifica se todos os dígitos são iguais (CPF inválido)
         if (/^(\d)\1+$/.test(cpfLimpo)) {
             this.showFieldError(this.elements.cpf, 'CPF inválido.');
             return false;
         }
-        
-        // Algoritmo de validação de CPF
+
+        // Algoritmo de validação de CPF (Corrigido)
         let tamanho = cpfLimpo.length - 2;
         let numeros = cpfLimpo.substring(0, tamanho);
         const digitos = cpfLimpo.substring(tamanho);
         let soma = 0;
-        let pos = tamanho - 7;
-        
-        for (let i = tamanho; i >= 1; i--) {
-            soma += numeros.charAt(tamanho - i) * pos--;
-            if (pos < 2) pos = 9;
+
+        // 1º Dígito: Multiplica os 9 primeiros números pelos pesos de 10 até 2
+        for (let i = 0; i < tamanho; i++) {
+            soma += numeros.charAt(i) * (10 - i);
         }
-        
-        let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+
+        let resultado = (soma * 10) % 11;
+        if (resultado === 10 || resultado === 11) resultado = 0;
+
         if (resultado != digitos.charAt(0)) {
             this.showFieldError(this.elements.cpf, 'CPF inválido.');
             return false;
         }
-        
+
+        // 2º Dígito: Multiplica os 10 primeiros números pelos pesos de 11 até 2
         tamanho = tamanho + 1;
         numeros = cpfLimpo.substring(0, tamanho);
         soma = 0;
-        pos = tamanho - 7;
-        
-        for (let i = tamanho; i >= 1; i--) {
-            soma += numeros.charAt(tamanho - i) * pos--;
-            if (pos < 2) pos = 9;
+
+        for (let i = 0; i < tamanho; i++) {
+            soma += numeros.charAt(i) * (11 - i);
         }
-        
-        resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+
+        resultado = (soma * 10) % 11;
+        if (resultado === 10 || resultado === 11) resultado = 0;
+
         if (resultado != digitos.charAt(1)) {
             this.showFieldError(this.elements.cpf, 'CPF inválido.');
             return false;
         }
-        
+
         this.clearFieldError(this.elements.cpf);
         return true;
     },
@@ -308,15 +315,18 @@ const FormValidator = {
     validateCelular() {
         const celular = this.elements.celular?.value;
         if (!celular) return true;
-        
+
         // Remove máscara e caracteres não numéricos
         const celularLimpo = celular.replace(/[^\d]/g, '');
-        
+
         if (celularLimpo.length < 10 || celularLimpo.length > 11) {
-            this.showFieldError(this.elements.celular, 'O número de telefone deve conter de 10 a 11 dígitos.');
+            this.showFieldError(
+                this.elements.celular,
+                'O número de telefone deve conter de 10 a 11 dígitos.'
+            );
             return false;
         }
-        
+
         this.clearFieldError(this.elements.celular);
         return true;
     },
@@ -327,15 +337,15 @@ const FormValidator = {
     validateCEP() {
         const cep = this.elements.cep?.value;
         if (!cep) return true;
-        
+
         // Remove máscara e caracteres não numéricos
         const cepLimpo = cep.replace(/[^\d]/g, '');
-        
+
         if (cepLimpo.length !== 8) {
             this.showFieldError(this.elements.cep, 'O CEP deve conter 8 dígitos.');
             return false;
         }
-        
+
         this.clearFieldError(this.elements.cep);
         return true;
     },
@@ -346,12 +356,12 @@ const FormValidator = {
     validateURL() {
         const url = this.elements.siteBlog?.value;
         if (!url) return true;
-        
+
         let urlFormatada = url;
         if (!urlFormatada.startsWith('http://') && !urlFormatada.startsWith('https://')) {
             urlFormatada = 'https://' + urlFormatada;
         }
-        
+
         try {
             new URL(urlFormatada);
             this.clearFieldError(this.elements.siteBlog);
@@ -369,12 +379,15 @@ const FormValidator = {
         const outrosSegmentos = Array.from(this.elements.segmentos)
             .filter(segmento => segmento.checked)
             .map(segmento => segmento.value);
-        
+
         if (outrosSegmentos.includes('14') && !this.elements.outroSegmento?.value.trim()) {
-            this.showFieldError(this.elements.outroSegmento, 'Por favor, informe o outro segmento.');
+            this.showFieldError(
+                this.elements.outroSegmento,
+                'Por favor, informe o outro segmento.'
+            );
             return false;
         }
-        
+
         this.clearFieldError(this.elements.outroSegmento);
         return true;
     },
@@ -384,7 +397,7 @@ const FormValidator = {
      */
     validateForm(event) {
         let isValid = true;
-        
+
         // Validação dos campos obrigatórios
         const requiredFields = [
             this.elements.tipoCadastro,
@@ -403,9 +416,9 @@ const FormValidator = {
             this.elements.siteBlog,
             this.elements.atividades,
             this.elements.possuiCnpj,
-            this.elements.aceito
+            this.elements.aceito,
         ];
-        
+
         requiredFields.forEach(field => {
             if (field && !field.value) {
                 this.showFieldError(field, 'Este campo é obrigatório.');
@@ -414,7 +427,7 @@ const FormValidator = {
                 this.clearFieldError(field);
             }
         });
-        
+
         // Validações específicas
         if (!this.validateEmail()) isValid = false;
         if (!this.validateCPF()) isValid = false;
@@ -422,22 +435,23 @@ const FormValidator = {
         if (!this.validateCEP()) isValid = false;
         if (!this.validateURL()) isValid = false;
         if (!this.validateOutroSegmento()) isValid = false;
-        
+
         // Validação de seleção de segmentos
-        const segmentosSelecionados = Array.from(this.elements.segmentos)
-            .filter(segmento => segmento.checked).length;
-        
+        const segmentosSelecionados = Array.from(this.elements.segmentos).filter(
+            segmento => segmento.checked
+        ).length;
+
         if (segmentosSelecionados === 0) {
             // Você pode adicionar uma validação personalizada aqui
             // isValid = false;
         }
-        
+
         if (!isValid) {
             event.preventDefault();
-            
+
             // Mensagem de erro para o usuário
             alert('Por favor, corrija os erros no formulário.');
-            
+
             // Scroll para o primeiro erro
             const firstError = document.querySelector('.is-invalid');
             if (firstError) {
@@ -445,7 +459,7 @@ const FormValidator = {
                 firstError.focus();
             }
         }
-        
+
         return isValid;
     },
 
@@ -454,13 +468,13 @@ const FormValidator = {
      */
     showFieldError(element, message) {
         if (!element) return;
-        
+
         // Remove a classe de erro anterior
         this.clearFieldError(element);
-        
+
         // Adiciona classe de erro
         element.classList.add('is-invalid');
-        
+
         // Cria mensagem de erro (se não existir)
         let errorElement = element.nextElementSibling;
         if (!errorElement || !errorElement.classList.contains('invalid-feedback')) {
@@ -469,7 +483,7 @@ const FormValidator = {
             errorElement.style.display = 'block';
             element.parentNode.insertBefore(errorElement, element.nextSibling);
         }
-        
+
         errorElement.textContent = message;
     },
 
@@ -478,14 +492,14 @@ const FormValidator = {
      */
     clearFieldError(element) {
         if (!element) return;
-        
+
         element.classList.remove('is-invalid');
-        
+
         const errorElement = element.nextElementSibling;
         if (errorElement && errorElement.classList.contains('invalid-feedback')) {
             errorElement.remove();
         }
-    }
+    },
 };
 
 // Inicializa o validador quando o DOM estiver carregado
